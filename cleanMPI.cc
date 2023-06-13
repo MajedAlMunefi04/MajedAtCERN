@@ -6,7 +6,6 @@
 #include <string>
 #include <algorithm>
 #include <vector>
-#include <matrix>
 #include <random>
 #include <utility>
 #include <mpi.h>
