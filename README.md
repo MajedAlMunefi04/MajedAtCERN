@@ -49,10 +49,10 @@ MPIData is a struct that encapsulates the various data needed for MPI processing
 
 * -s: Specify the size of data vectors.
 * -r: Specify the number of functions to run.
-* -n: Specify the number of iterations for each function to calculate the average time.
+* -i: Specify the number of iterations for each function to calculate the average time.
 
 Example of command line execution:
 
-mpirun -n 3 cleanMPI1 -s 10 -r 12345 -n 2
+mpirun -n 3 cleanMPI1 -s 10 -r 12345 -i 2
 
 Please adapt the implementation according to your needs for optimal utility.
