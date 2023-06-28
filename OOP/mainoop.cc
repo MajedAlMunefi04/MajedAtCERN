@@ -78,7 +78,7 @@ void parseCommands(int argc, char* argv[]){
                     abort();
                 }
                 break;
-            case 'r':
+            case 'f':
                 try {
                     userSelectedFunctions_ = convertIntToVector(std::stoll(optarg, nullptr, 0)); // whats in the function input is an int that the user wriote
                 } catch (std::exception& err) {
@@ -87,7 +87,7 @@ void parseCommands(int argc, char* argv[]){
                     abort();
                 }
                 break;
-            case 'n':
+            case 'i':
                 try {
                     avgRunCount_ = std::stoll(optarg, nullptr, 0);  // Set the average run count based on the command-line argument.
                 } catch (std::exception& err) {
