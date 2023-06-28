@@ -3,9 +3,6 @@
 # MPI Function Timing Tool 
 
 
-### Original Code done by Ali Marafi (Kuwait University) @ CERN
-### Edited and Cleaned by Majed AlMunefi (Duke University) @ CERN
-
 
 This tool is designed to measure the performance of different MPI function calls. In particular, it compares the execution times of scatter/send and gather/receive operations. It does this through 2 vector addition.
 
