@@ -1,4 +1,4 @@
-### majedEditingAlisCode
+### Majed @ CERN
 
 # MPI Function Timing Tool 
 
