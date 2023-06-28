@@ -45,7 +45,7 @@ MPIData is a struct that encapsulates the various data needed for MPI processing
 ## Command line arguments:
 
 * -s: Specify the size of data vectors.
-* -r: Specify the number of functions to run.
+* -f: Specify the number of functions to run.
 * -i: Specify the number of iterations for each function to calculate the average time.
 
 Example of command line execution:
