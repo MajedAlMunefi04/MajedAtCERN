@@ -37,7 +37,7 @@ MPIData is a struct that encapsulates the various data needed for MPI processing
 * mpiFunctionCount_: Number of available MPI functions.
 * vectorSize_: Default size of data vectors.
 * avgRunCount_: Default number of iterations each function will run to calculate the average time.
-* * decimalPrecision_: Default number of digits after the decimal point in output.
+* decimalPrecision_: Default number of digits after the decimal point in output.
 * rootProcess_: Total number of functions in the program.
 * userChoice_:User's choice for which function to run.
 * userSelectedFunctions_: Vector to store user's function selections.
