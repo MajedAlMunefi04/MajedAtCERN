@@ -13,7 +13,7 @@
 #include "rootProcess.h"
 #include "processInterface.h"
 
-int vectorSize_ = 21;                     // Default size of vectors.
+int vectorSize_ = 1;                     // Default size of vectors.
 int avgRunCount_ = 5;                   // Default number of runs for each function to calculate average time.
 int mpiFunctionCount_ = 5;
 std::vector<int> userSelectedFunctions_;   // Vector to store user's function selections.
