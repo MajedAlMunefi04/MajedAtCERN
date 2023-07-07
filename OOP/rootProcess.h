@@ -62,7 +62,7 @@ public:
 
     std::pair<float, float> nonBlockingSend() override {
 
-        MPI_Request requestSend[2];
+        MPI_Request requestSend[2*(size_ -1)]; //two for each process (one for sending v1 and the other for sending v2)
         MPI_Request requestRecv;
 
         batchSize = v1_.size() / (size_ - 1);  //execluding root
@@ -74,12 +74,11 @@ public:
 
         for (int i = 1; i < size_; i++) {
                 int curSize = batchSize + ((extraBatches >= i)? 1 : 0) ; //size of cur Batch
-                MPI_Issend(  &v1_[curIdx], curSize, MPI_FLOAT, i, 0, MPI_COMM_WORLD, &requestSend[0]);
-                MPI_Issend(  &v2_[curIdx], curSize, MPI_FLOAT, i, 0, MPI_COMM_WORLD, &requestSend[1]);
-                MPI_Waitall(2, requestSend, MPI_STATUS_IGNORE);
+                MPI_Issend(  &v1_[curIdx], curSize, MPI_FLOAT, i, 0, MPI_COMM_WORLD, &requestSend[(i-1)*2]);
+                MPI_Issend(  &v2_[curIdx], curSize, MPI_FLOAT, i, 0, MPI_COMM_WORLD, &requestSend[(i-1)*2 + 1]);
                 curIdx += curSize;
         }
-
+	MPI_Waitall( 2*(size_ - 1), requestSend, MPI_STATUS_IGNORE);
         endTime = MPI_Wtime();
         sendDuration = (endTime - startTime)*1000;
 
