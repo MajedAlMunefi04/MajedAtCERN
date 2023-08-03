@@ -84,7 +84,7 @@ std::tuple<int, std::vector<int>, int> parseCommands(int argc, char* argv[]){
 void printResults(const std::vector<std::tuple<int, float, float>> executionTimes, int iterations) {
 
 
-    const std::string  COMM_METHOD_NAMES[] = {"NONBLOCKING SCATTER", "BLOCKING SCATTER", "BLOCKING SEND/RECV", "NONBLOCKING SEND/RECV"};
+    const std::string  COMM_METHOD_NAMES[] = {"NONBLOCKING SCATTER", "BLOCKING SCATTER", "NONBLOCKING SEND/RECV", "BLOCKING SEND/RECV"};
     const auto COL1 = 25, COL2 = 15, COL3 = 15, COL4 = 11;
     std::string ROW    = "================================================================================";
     std::string DASHES = "--------------------------------------------------------------------------------";
