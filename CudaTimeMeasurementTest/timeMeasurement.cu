@@ -14,7 +14,7 @@
 #include <thrust/device_vector.h>
 #include <unistd.h>
 #include "HeterogeneousCore/CUDAUtilities/interface/cudaCheck.h"
-#include "newTimeCalc.h"
+#include "timeCalc.h"
 #include "Timing.h"
 #include "HeterogeneousCore/CUDAUtilities/interface/requireDevices.h"
 
@@ -39,24 +39,14 @@ int main(int argc, char* argv[]) {
     std::cout << "comm methods: " << commMethods[i] << std::endl;
 	results.push_back(calc.calculateAverage(commMethods[i]));
   }
-    printHeader();
-    for (size_t i = 0; i < commMethods.size(); i++){
-        printResults(vecSize, iterations ,results[i], commMethods[i]);
-    }
-    return 0;
+  printHeader();
+  for (size_t i = 0; i < commMethods.size(); i++){
+      printResults(vecSize, iterations ,results[i], commMethods[i]);
+  }
+    return 0 ;
 }
 
 void printHeader(){
-/*    std::cout << "error: " << time.noError <<
-                "IN MAIN Average upload: " << time.timeUploadAvg <<
-                " std upload: " << time.timeUploadstd <<
-                " Average download: " << time.timeDownloadAvg <<
-                " std download: " << time.timeDownloadstd <<
-                " Average calc dev: " << time.timeCalcAvg <<
-                " std calc dev: " << time.timeCalcstd <<
-                " average calc host: " << time.timeCalcCpuAvg <<
-                " std calc host: " << time.timeCalcCpustd ;
-*/
     const auto COL1 = 25, COL2to10 = 15, COL11 = 11;
     std::string ROW    = "=====================================================================================================";
     std::string DASHES = "-----------------------------------------------------------------------------------------------------";
@@ -77,7 +67,7 @@ void printHeader(){
               <<std::setw(COL2to10)<<"cpu pov Std"<<"|| "
               <<std::setw(COL11)<<"Iterations"<<"||"
               <<std::setw(COL11)<<"Error?"<<"||"
-              << "\n\t"<<ROW <<ROW;
+              << "\n\t"<<ROW <<ROW << "\n";
 }
 
 void printResults(int vecSize, int iterations, Timing time, int commMethods) {
@@ -98,8 +88,8 @@ void printResults(int vecSize, int iterations, Timing time, int commMethods) {
        error = "no Error";
         }
               
-    std::cout << "\n\t|| " <<std::left
-                <<std::setw(COL1) << COMM_METHOD_NAMES[commMethods - 1] << "|| "
+    std::cout << "\t|| " <<std::left
+                <<std::setw(COL1) << COMM_METHOD_NAMES[commMethods] << "|| "
                 <<std::setw(COL2to10)<<time.timeUploadAvg<<"|| "
                 <<std::setw(COL2to10)<<time.timeUploadstd<<"|| "
                 <<std::setw(COL2to10)<<time.timeCalcAvg<<"|| "
@@ -111,11 +101,10 @@ void printResults(int vecSize, int iterations, Timing time, int commMethods) {
                 <<std::setw(COL11) << iterations<< "||"
                 <<std::setw(COL11) << error << "||";
 	     
-    std::cout << "1\n\t"<<ROW<<ROW;
-    saveToFile(COMM_METHOD_NAMES[commMethods - 1], time , vecSize, iterations);
+    std::cout << "\n\t"<<ROW<<ROW << "\n";
+    saveToFile(COMM_METHOD_NAMES[commMethods], time , vecSize, iterations);
     
 }
-
 void saveToFile(const std::string &name, const Timing &timing, int vecSize, int iterations) {
   std::ofstream file(name + ".txt", std::ios::out | std::ios::app);
 
@@ -192,4 +181,3 @@ std::tuple<int, std::vector<int>, int> parseCommands(int argc, char* argv[]){
     }
     return std::make_tuple(vecSize, commMethods, iterations); 
 }
-
